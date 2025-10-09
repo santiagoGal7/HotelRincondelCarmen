@@ -2,7 +2,7 @@
 
 ## Descripción General 📝
 
-Hotel El Rincón del Carmen es una aplicación web para la gestión de reservas de un hotel, diseñada para cumplir con los requisitos del proyecto **Gestor de Compañías**. Permite a los usuarios explorar servicios del hotel, realizar y gestionar reservas, registrarse e iniciar sesión como usuario o administrador, y disfrutar de un diseño responsivo y atractivo. La aplicación utiliza HTML, JavaScript, Tailwind CSS y `localStorage` para manejar datos en formato JSON.
+Hotel El Rincón del Carmen es una aplicación web para la gestión de reservas de un hotel. Permite a los usuarios explorar servicios del hotel, realizar y gestionar reservas, registrarse e iniciar sesión como usuario o administrador, y disfrutar de un diseño responsivo y atractivo. La aplicación utiliza HTML, JavaScript, Tailwind CSS y `localStorage` para manejar datos en formato JSON.
 
 ## Características ✨
 
