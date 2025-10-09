@@ -1,0 +1,196 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Forzar footer al fondo */
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+/* Navbar */
+nav {
+    background-color: #2c3e50;
+}
+
+.nav-link {
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #1859ba !important;
+}
+
+/* Pestañas */
+ul[role="tablist"] li a {
+    transition: all 0.2s ease-in-out;
+}
+
+ul[role="tablist"] li a.active {
+    background-color: #1859ba;
+    color: white;
+    border-bottom: 2px solid #1859ba;
+}
+
+/* Carrusel */
+.carousel img {
+    max-height: 500px;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Servicios (scroll horizontal) */
+.services-carousel {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.services-carousel img {
+    scroll-snap-align: center;
+}
+
+/* Tarjetas y Formularios */
+.card {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #4a5568;
+    margin-bottom: 0.25rem;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #1859ba;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(24, 89, 186, 0.2);
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #1859ba;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0f3c8a;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+thead {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Alertas */
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Spinner */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2,
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    .carousel img {
+        height: 300px;
+    }
+
+    table {
+        overflow-x: auto;
+        display: block;
+    }
+
+    .nav-link {
+        padding: 0.5rem;
+    }
+
+    .services-carousel img {
+        height: 200px;
+    }
+}

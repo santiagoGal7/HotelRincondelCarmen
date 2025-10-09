@@ -1,0 +1,31 @@
+{
+    "habitaciones": [
+    {
+        "id": 1,
+        "camas": 2,
+        "maxPersonas": 4,
+        "precioNoche": 150000,
+        "servicios": ["internet", "minibar", "jacuzzi"]
+    },
+    {
+        "id": 2,
+        "camas": 1,
+        "maxPersonas": 2,
+        "precioNoche": 100000,
+        "servicios": ["internet"]
+    },
+    {
+        "id": 3,
+        "camas": 3,
+        "maxPersonas": 6,
+        "precioNoche": 200000,
+        "servicios": ["internet", "minibar", "vista al mar"]
+    }
+    ],
+    "usuarios": [],
+    "reservas": [],
+    "admin": {
+    "username": "admin",
+    "password": "admin123"
+    }
+}
