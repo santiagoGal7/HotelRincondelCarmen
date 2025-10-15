@@ -26,6 +26,7 @@ export class NavMenu extends HTMLElement {
                         <li><a href="#" class="nav-link hover:text-blue-600" data-module="inicio">Inicio</a></li>
                         <li><a href="#" class="nav-link hover:text-blue-600" data-module="reservas">Reservas</a></li>
                         <li><a href="#" class="nav-link hover:text-blue-600" data-module="contacto">Contacto</a></li>
+                        <li><a href="#" class="nav-link hover:text-blue-600" data-module="quemos">Quejas/R</a></li>
                         <li id="auth-link"><a href="#" class="nav-link hover:text-blue-600" data-module="auth">Iniciar Sesión</a></li>
                     </ul>
                 </div>

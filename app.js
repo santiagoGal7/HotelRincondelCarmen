@@ -3,6 +3,7 @@ import './app/components/carousel.js';
 import './app/components/hotel-component.js';
 import './app/components/reg-usuario.js';
 import './app/components/contacto.js';
+import './app/components/que_mos.js'
 import { initLocalStorage } from './js/utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
