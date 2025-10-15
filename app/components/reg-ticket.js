@@ -1,5 +1,5 @@
 import { postTicket } from '../../../apis/ticketApi.js';
-import { getReservasByUsuario } from '../../../apis/reservaApi.js';
+import { getReservas } from '../../../apis/reservaApi.js';
 
 export class RegTicket extends HTMLElement {
     constructor() {
