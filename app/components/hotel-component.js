@@ -1,15 +1,18 @@
 import './lst-habitaciones.js';
 import './reg-reserva.js';
+import './lst-reservas.js';
+import './reg-habitacion.js';
+import './admin-tickets.js';
 
 export class HotelComponent extends HTMLElement {
     constructor() {
         super();
-        console.log('HotelComponent: Constructor ejecutado'); // Depuración
+        console.log('HotelComponent: Constructor ejecutado');
         this.render();
     }
 
     render() {
-        console.log('HotelComponent: Renderizando componente'); // Depuración
+        console.log('HotelComponent: Renderizando componente');
         const usuario = JSON.parse(localStorage.getItem('usuarioLogueado'));
         const admin = JSON.parse(localStorage.getItem('adminLogueado'));
         let userMessage = 'Invitado';
@@ -31,6 +34,10 @@ export class HotelComponent extends HTMLElement {
                     <div class="mb-4">
                         <h3 class="text-xl font-semibold mb-2">Listado de Habitaciones</h3>
                         <lst-habitaciones></lst-habitaciones>
+                    </div>
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold mb-2">Gestión de Quejas y Reclamos</h3>
+                        <admin-tickets></admin-tickets>
                     </div>
                 ` : ''}
                 <div class="mb-4">
