@@ -1,4 +1,5 @@
 import useEmblaCarousel from 'embla-carousel-react'
+import { Button } from '@/components/ui/button'
 import { useCallback } from 'react'
 import type { ReactNode } from 'react'
 
@@ -18,12 +19,12 @@ export function Carousel({
       <div className="mb-4 flex items-center justify-between gap-4">
         <p className="font-mono text-[11px] tracking-[0.18em] text-muted uppercase">{label}</p>
         <div className="flex gap-2">
-          <button type="button" className="h-10 w-10 border border-line" onClick={prev} aria-label="Anterior">
+          <Button type="button" variant="icon" size="sm" onClick={prev} aria-label="Anterior">
             ←
-          </button>
-          <button type="button" className="h-10 w-10 border border-line" onClick={next} aria-label="Siguiente">
+          </Button>
+          <Button type="button" variant="icon" size="sm" onClick={next} aria-label="Siguiente">
             →
-          </button>
+          </Button>
         </div>
       </div>
       <div ref={ref} className="overflow-hidden" data-lenis-prevent>

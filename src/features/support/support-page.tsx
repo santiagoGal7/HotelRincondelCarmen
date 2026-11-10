@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { PageIntro, usePageTitle } from '@/components/page-intro'
+import { Button } from '@/components/ui/button'
 import { controlClass, Field } from '@/components/ui/field'
 import { ownsBooking } from '@/lib/api/types'
 import { formatDate } from '@/lib/format'
@@ -77,15 +78,17 @@ export function SupportPage() {
             {form.formState.errors.root ? (
               <p className="text-sm text-accent">{form.formState.errors.root.message}</p>
             ) : null}
-            <button
+            <Button
               type="submit"
-              className="h-12 bg-fg text-sm text-bg"
+              variant="primary"
+              arrow
+              loading={form.formState.isSubmitting}
               onClick={() => {
                 form.clearErrors('root')
               }}
             >
               Enviar ticket
-            </button>
+            </Button>
             {sent ? (
               <p className="text-sm text-muted">Ticket registrado. Queda en Pendiente.</p>
             ) : null}

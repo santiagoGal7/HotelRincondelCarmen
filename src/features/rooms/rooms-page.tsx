@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel, Slide } from '@/components/cinematic/carousel'
+import { Button } from '@/components/ui/button'
 import { Photo } from '@/components/photo'
 import { PageIntro, usePageTitle } from '@/components/page-intro'
 import { typeLabel } from '@/data/content'
@@ -102,12 +103,9 @@ export function RoomsPage() {
                   </p>
                   <div className="mt-6 flex flex-wrap items-center gap-4">
                     <p className="font-mono">{formatCop(room.precioNoche)} / noche</p>
-                    <Link
-                      to={`/reservar/${room.slug}`}
-                      className="inline-flex h-11 items-center bg-accent px-4 text-sm text-accent-fg"
-                    >
-                      Reservar esta
-                    </Link>
+                    <Button asChild variant="primary" size="sm" arrow>
+                      <Link to={`/reservar/${room.slug}`}>Reservar esta</Link>
+                    </Button>
                   </div>
                 </div>
               </article>

@@ -38,7 +38,7 @@ El resto de las vistas, en 1440 px y 360 px, está en `docs/screenshots/`: habit
 
 React 19, TypeScript y Vite. El resultado es un sitio estático: `npm run build` deja `dist/` listo para Netlify o Vercel, sin servidor Node en producción. Next.js aportaría enrutado de servidor que esta demo no necesita; el dato vive en el navegador o, si se quiere, en un json-server local.
 
-- Tailwind CSS 4 para el sistema visual.
+- Tailwind CSS 4 para el sistema visual. Tipografía Fraunces y Manrope, autoalojada, con una escala fluida en `clamp()`.
 - Primitivas de Radix (diálogo, acordeón, slot) compuestas aquí, al modo de shadcn, con los tokens del hotel y sin el tema índigo de fábrica.
 - Motion para el héroe, las máscaras y las transiciones de ruta. GSAP ScrollTrigger para la sección fijada de habitaciones. Lenis para el desplazamiento. Embla para los carruseles. No hay escena WebGL: el peso se queda en el video y en el scroll.
 - React Hook Form y Zod en reserva, cuenta, contacto y tickets.

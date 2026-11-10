@@ -1,6 +1,7 @@
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Button } from '@/components/ui/button'
 import { useHotel } from '@/lib/hotel-context'
 import { useTheme } from '@/lib/theme'
 import { cn } from '@/lib/cn'
@@ -59,7 +60,7 @@ export function SiteHeader() {
             <span className="h-2 w-2 bg-accent" />
           </span>
           <span className="leading-none">
-            <span className="block font-display text-[0.95rem] tracking-tight">
+            <span className="block font-display text-[0.82rem] tracking-tight whitespace-nowrap sm:text-[0.95rem]">
               El Rincón del Carmen
             </span>
             <span
@@ -94,42 +95,38 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <button
+          <Button
             type="button"
+            variant="icon"
+            size="sm"
             onClick={toggle}
-            className="grid h-10 w-10 place-items-center"
             aria-label={theme === 'dark' ? 'Usar tema claro' : 'Usar tema oscuro'}
           >
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-          <Link to={account.to} className="hidden text-sm hover:opacity-70 sm:inline">
-            {account.label}
-          </Link>
+          </Button>
+          <Button asChild variant="ghost" className="hidden sm:inline-flex">
+            <Link to={account.to}>{account.label}</Link>
+          </Button>
           {session.role !== 'guest' ? (
-            <button
-              type="button"
-              onClick={logout}
-              className="hidden text-sm hover:opacity-70 md:inline"
-            >
+            <Button type="button" variant="ghost" onClick={logout} className="hidden md:inline-flex">
               Salir
-            </button>
+            </Button>
           ) : null}
-          <Link
-            to="/reservar"
-            className="hidden h-10 items-center bg-accent px-4 text-sm text-accent-fg sm:inline-flex"
-          >
-            Reservar
-          </Link>
-          <button
+          <Button asChild variant="primary" size="sm" arrow magnetic className="hidden sm:inline-flex">
+            <Link to="/reservar">Reservar</Link>
+          </Button>
+          <Button
             type="button"
-            className="grid h-10 w-10 place-items-center lg:hidden"
+            variant="icon"
+            size="sm"
+            className="lg:hidden"
             aria-expanded={open}
             aria-controls="menu-movil"
             onClick={() => setMenuPath((value) => (value === pathname ? null : pathname))}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
             <span className="sr-only">{open ? 'Cerrar menú' : 'Abrir menú'}</span>
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -167,12 +164,9 @@ export function SiteHeader() {
                 Salir
               </button>
             ) : null}
-            <Link
-              to="/reservar"
-              className="mt-6 inline-flex h-12 items-center justify-center bg-accent text-accent-fg"
-            >
-              Reservar estancia
-            </Link>
+            <Button asChild variant="primary" arrow className="btn-block mt-6">
+              <Link to="/reservar">Reservar estancia</Link>
+            </Button>
           </nav>
         </div>
       ) : null}

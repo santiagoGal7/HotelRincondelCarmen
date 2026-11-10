@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { usePageTitle } from '@/components/page-intro'
+import { Button } from '@/components/ui/button'
 import { controlClass, Field } from '@/components/ui/field'
 import { Photo } from '@/components/photo'
 import { useHotel } from '@/lib/hotel-context'
@@ -112,9 +113,9 @@ export function AuthPage() {
                 {error}
               </p>
             ) : null}
-            <button type="submit" className="h-12 bg-fg text-sm text-bg">
+            <Button type="submit" variant="primary" arrow loading={loginForm.formState.isSubmitting}>
               Entrar
-            </button>
+            </Button>
           </form>
         ) : null}
 
@@ -174,9 +175,9 @@ export function AuthPage() {
                 {error}
               </p>
             ) : null}
-            <button type="submit" className="h-12 bg-fg text-sm text-bg">
+            <Button type="submit" variant="primary" arrow loading={registerForm.formState.isSubmitting}>
               Crear cuenta
-            </button>
+            </Button>
           </form>
         ) : null}
 
@@ -218,9 +219,9 @@ export function AuthPage() {
                 {error}
               </p>
             ) : null}
-            <button type="submit" className="h-12 bg-accent text-sm text-accent-fg">
+            <Button type="submit" variant="primary" arrow loading={adminForm.formState.isSubmitting}>
               Entrar a recepción
-            </button>
+            </Button>
           </form>
         ) : null}
 

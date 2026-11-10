@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Lightbox } from '@/components/cinematic/lightbox'
+import { Button } from '@/components/ui/button'
 import { Photo } from '@/components/photo'
 import { usePageTitle } from '@/components/page-intro'
 import { typeLabel } from '@/data/content'
@@ -67,7 +68,7 @@ export function RoomPage() {
           <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">
             {typeLabel[room.tipo]}
           </p>
-          <h1 className="mt-2 font-display text-5xl leading-none font-medium tracking-tight sm:text-6xl">
+          <h1 className="type-h1 mt-2">
             {room.nombre}
           </h1>
           <p className="mt-4 text-sm leading-relaxed text-muted">{room.descripcion}</p>
@@ -93,12 +94,9 @@ export function RoomPage() {
             ))}
           </ul>
           <p className="mt-6 font-mono text-lg">{formatCop(room.precioNoche)} / noche</p>
-          <Link
-            to={`/reservar/${room.slug}`}
-            className="mt-5 inline-flex h-12 w-full items-center justify-center bg-accent text-sm text-accent-fg"
-          >
-            Reservar {room.nombre}
-          </Link>
+          <Button asChild variant="primary" arrow className="btn-block mt-6">
+            <Link to={`/reservar/${room.slug}`}>Reservar {room.nombre}</Link>
+          </Button>
         </div>
       </div>
       <Lightbox

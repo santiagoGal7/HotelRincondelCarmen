@@ -4,6 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { lazy, Suspense, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel, Slide } from '@/components/cinematic/carousel'
+import { Button } from '@/components/ui/button'
 import { Counter } from '@/components/cinematic/counter'
 import { MaskImage } from '@/components/cinematic/mask-image'
 import { SplitText } from '@/components/cinematic/split-text'
@@ -16,6 +17,9 @@ const marquee = ['Estándar', 'Deluxe', 'Suite', 'Spa', 'Cocina', 'Piscina', 'Va
 
 const RoomStory = lazy(() =>
   import('@/components/cinematic/story').then((module) => ({ default: module.RoomStory })),
+)
+const ImageReel = lazy(() =>
+  import('@/components/cinematic/reel').then((module) => ({ default: module.ImageReel })),
 )
 
 const places = [
@@ -48,19 +52,36 @@ function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-[100svh] overflow-hidden bg-black text-white">
-      <div className="absolute inset-0" aria-hidden="true">
-        {reduce ? (
-          <Photo name="hero-poster" alt="" priority className="h-full w-full object-cover" />
-        ) : (
+      <div className="absolute inset-0">
+        <img
+          src="/media/hero-poster-800.avif"
+          srcSet="/media/hero-poster-800.avif 800w, /media/hero-poster.avif 1920w"
+          sizes="100vw"
+          alt=""
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {reduce ? null : (
           <motion.video
             style={{ y, scale: 1.08 }}
-            className="h-[118%] w-full object-cover"
-            poster="/media/hero-poster.webp"
-            autoPlay
+            className="absolute inset-0 h-full w-full object-cover"
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
+            ref={(node) => {
+              if (!node || node.dataset.armed) return
+              node.dataset.armed = '1'
+              const start = () => {
+                node.play().catch(() => undefined)
+              }
+              const idle = window.requestIdleCallback?.bind(window)
+              if (idle) idle(start)
+              else window.setTimeout(start, 700)
+            }}
           >
             <source src="/media/hero.mp4" type="video/mp4" />
             <source src="/media/hero.webm" type="video/webm" />
@@ -81,29 +102,24 @@ function Hero() {
           >
             Carmen de Apicalá · Tolima
           </motion.p>
-          <h1 className="mt-4 max-w-5xl font-display text-[clamp(3.6rem,10vw,8.6rem)] leading-[0.86] font-medium tracking-[-0.03em]">
+          <h1 className="type-display mt-4 max-w-5xl">
             <SplitText text="El rincón del Carmen" />
           </h1>
-          <motion.p
-            className="mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.7 }}
-          >
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
             Tres habitaciones en el pueblo. Desayuno en la casa, piscina al mediodía y un spa que funciona con cita.
-          </motion.p>
+          </p>
           <motion.div
             className="mt-8 flex flex-col gap-3 sm:flex-row"
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.7 }}
           >
-            <Link to="/reservar" className="inline-flex h-12 items-center justify-center bg-accent px-6 text-sm text-accent-fg">
-              Reservar estancia
-            </Link>
-            <a href="#historia" className="inline-flex h-12 items-center justify-center border border-white/40 px-6 text-sm">
-              Bajar por la casa
-            </a>
+            <Button asChild variant="primary" size="lg" arrow magnetic>
+              <Link to="/reservar">Reservar estancia</Link>
+            </Button>
+            <Button asChild variant="secondary" inverse size="lg" arrow>
+              <a href="#historia">Bajar por la casa</a>
+            </Button>
           </motion.div>
         </div>
       </motion.div>
@@ -154,6 +170,9 @@ export function HomePage() {
 
       <Suspense fallback={<div className="h-screen bg-[#0c0b0a]" />}>
         <RoomStory rooms={ordered} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <ImageReel />
       </Suspense>
 
       <section id="servicios" className="shell py-20 md:py-28">

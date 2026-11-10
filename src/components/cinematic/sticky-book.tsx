@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { Button } from '@/components/ui/button'
 import { formatCop } from '@/lib/format'
 import { useHotel } from '@/lib/hotel-context'
 
@@ -38,9 +39,9 @@ export function StickyBook() {
               <span className="font-display text-2xl">{formatCop(from)}</span>
               <span className="text-muted"> / noche</span>
             </p>
-            <Link to="/reservar" className="inline-flex h-11 items-center bg-accent px-5 text-sm text-accent-fg">
-              Reservar
-            </Link>
+            <Button asChild variant="primary" size="sm" arrow magnetic>
+              <Link to="/reservar">Reservar</Link>
+            </Button>
           </div>
         </motion.div>
       ) : null}

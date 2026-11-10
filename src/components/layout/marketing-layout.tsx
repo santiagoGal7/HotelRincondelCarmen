@@ -1,5 +1,6 @@
 import { motion, useReducedMotion, useScroll, useSpring } from 'motion/react'
 import { useLocation } from 'react-router-dom'
+import { Cursor } from '@/components/cinematic/cursor'
 import { IntroLoader } from '@/components/cinematic/loader'
 import { StickyBook } from '@/components/cinematic/sticky-book'
 import { PageTransition } from '@/components/layout/page-transition'
@@ -26,6 +27,7 @@ export function MarketingLayout() {
   return (
     <>
       <IntroLoader />
+      <Cursor />
       <ScrollProgress />
       <SiteHeader />
       <StickyBook />

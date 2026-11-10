@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Photo } from '@/components/photo'
 import { Modal } from '@/components/ui/modal'
+import { Button } from '@/components/ui/button'
 import { controlClass, Field } from '@/components/ui/field'
 import { mediaLibrary, typeLabel } from '@/data/content'
 import { occupancyPercent } from '@/lib/booking'
@@ -185,28 +186,25 @@ export function AdminPage() {
                 </li>
               ))}
             </ul>
-            <button
+            <Button
               type="button"
-              className="mt-6 h-11 border border-line px-4 text-sm"
+              variant="secondary"
+              className="mt-6"
               onClick={async () => {
                 await hotel.resetDemo()
                 setNotice('Datos de demostración restablecidos.')
               }}
             >
               Restablecer demostración
-            </button>
+            </Button>
           </div>
         ) : null}
 
         {section === 'habitaciones' ? (
           <div>
-            <button
-              type="button"
-              className="mb-6 h-11 bg-fg px-4 text-sm text-bg"
-              onClick={() => openRoom(null)}
-            >
+            <Button type="button" variant="primary" arrow className="mb-6" onClick={() => openRoom(null)}>
               Nueva habitación
-            </button>
+            </Button>
             <ul className="border-b border-line">
               {hotel.rooms.map((room) => (
                 <li
@@ -506,9 +504,9 @@ export function AdminPage() {
               </div>
             </fieldset>
             {notice ? <p className="text-sm text-accent">{notice}</p> : null}
-            <button type="button" className="h-12 bg-fg text-sm text-bg" onClick={saveRoom}>
+            <Button type="button" variant="primary" arrow className="btn-block" onClick={saveRoom}>
               Guardar habitación
-            </button>
+            </Button>
           </div>
         ) : null}
       </Modal>
@@ -555,9 +553,9 @@ export function AdminPage() {
                 onChange={(event) => setReply({ ...reply, respuesta: event.target.value })}
               />
             </Field>
-            <button type="submit" className="h-12 bg-fg text-sm text-bg">
+            <Button type="submit" variant="primary" arrow className="btn-block">
               Guardar respuesta
-            </button>
+            </Button>
           </form>
         ) : null}
       </Modal>

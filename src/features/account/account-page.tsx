@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageIntro, usePageTitle } from '@/components/page-intro'
+import { Button } from '@/components/ui/button'
 import { ownsBooking } from '@/lib/api/types'
 import { formatCop, formatDate } from '@/lib/format'
 import { useHotel } from '@/lib/hotel-context'
@@ -23,18 +24,12 @@ export function AccountPage() {
       />
       <div className="shell pb-24">
         <div className="mb-8 flex flex-wrap gap-3">
-          <Link
-            to="/reservar"
-            className="inline-flex h-11 items-center bg-accent px-4 text-sm text-accent-fg"
-          >
-            Nueva reserva
-          </Link>
-          <Link
-            to="/soporte"
-            className="inline-flex h-11 items-center border border-line px-4 text-sm"
-          >
-            Quejas y reclamos
-          </Link>
+          <Button asChild variant="primary" arrow>
+            <Link to="/reservar">Nueva reserva</Link>
+          </Button>
+          <Button asChild variant="secondary">
+            <Link to="/soporte">Quejas y reclamos</Link>
+          </Button>
         </div>
         {error ? (
           <p role="alert" className="mb-4 text-sm text-accent">
@@ -67,9 +62,9 @@ export function AccountPage() {
                   {booking.estado === 'confirmada' ? (
                     pending === booking.id ? (
                       <div className="flex gap-2">
-                        <button
+                        <Button
                           type="button"
-                          className="h-10 bg-fg px-3 text-sm text-bg"
+                          size="sm"
                           onClick={async () => {
                             setError(null)
                             try {
@@ -83,23 +78,15 @@ export function AccountPage() {
                           }}
                         >
                           Confirmar
-                        </button>
-                        <button
-                          type="button"
-                          className="h-10 px-3 text-sm"
-                          onClick={() => setPending(null)}
-                        >
+                        </Button>
+                        <Button type="button" variant="ghost" size="sm" onClick={() => setPending(null)}>
                           Volver
-                        </button>
+                        </Button>
                       </div>
                     ) : (
-                      <button
-                        type="button"
-                        className="h-10 text-left text-sm underline underline-offset-4"
-                        onClick={() => setPending(booking.id)}
-                      >
+                      <Button type="button" variant="ghost" size="sm" onClick={() => setPending(booking.id)}>
                         Cancelar
-                      </button>
+                      </Button>
                     )
                   ) : (
                     <span className="text-sm text-muted">Cerrada</span>

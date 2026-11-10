@@ -10,10 +10,11 @@ export function PageTransition() {
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={location.pathname}
-        initial={reduce ? false : { opacity: 0, y: 18 }}
+        initial={reduce ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={reduce ? undefined : { opacity: 0, y: -12 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        exit={reduce ? undefined : { opacity: 0, y: -16 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="bg-bg"
       >
         {outlet as ReactNode}
       </motion.div>

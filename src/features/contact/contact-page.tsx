@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { PageIntro, usePageTitle } from '@/components/page-intro'
+import { Button } from '@/components/ui/button'
 import { controlClass, Field } from '@/components/ui/field'
 import { useHotel } from '@/lib/hotel-context'
 import { contactSchema } from '@/lib/schemas'
@@ -71,9 +72,9 @@ export function ContactPage() {
             <Field label="Mensaje" error={form.formState.errors.mensaje?.message}>
               <textarea className={`${controlClass} min-h-36`} {...form.register('mensaje')} />
             </Field>
-            <button type="submit" className="h-12 bg-fg text-sm text-bg">
+            <Button type="submit" variant="primary" arrow loading={form.formState.isSubmitting}>
               Enviar mensaje
-            </button>
+            </Button>
           </form>
         )}
       </div>

@@ -8,6 +8,7 @@ import '@/features/booking/calendar.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PriceSummary } from '@/components/price-summary'
 import { PageIntro, usePageTitle } from '@/components/page-intro'
+import { Button } from '@/components/ui/button'
 import { controlClass, Field } from '@/components/ui/field'
 import { typeLabel } from '@/data/content'
 import { isRoomAvailable, quoteMessage, quoteStay, toISODate } from '@/lib/booking'
@@ -134,21 +135,17 @@ export function BookingPage() {
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           {session.role === 'user' ? (
-            <Link to="/cuenta" className="inline-flex h-11 items-center bg-fg px-4 text-sm text-bg">
-              Ver mis reservas
-            </Link>
+            <Button asChild variant="primary" arrow>
+              <Link to="/cuenta">Ver mis reservas</Link>
+            </Button>
           ) : (
-            <Link to="/entrar" className="inline-flex h-11 items-center bg-fg px-4 text-sm text-bg">
-              Crear cuenta con este correo
-            </Link>
+            <Button asChild variant="primary" arrow>
+              <Link to="/entrar">Crear cuenta con este correo</Link>
+            </Button>
           )}
-          <button
-            type="button"
-            className="h-11 border border-line px-4 text-sm"
-            onClick={() => setDone(null)}
-          >
+          <Button type="button" variant="secondary" onClick={() => setDone(null)}>
             Hacer otra
-          </button>
+          </Button>
         </div>
       </div>
     )
@@ -227,27 +224,27 @@ export function BookingPage() {
           <fieldset>
             <legend className="font-display text-2xl">3. Huéspedes</legend>
             <div className="mt-4 flex items-center gap-4">
-              <button
+              <Button
                 type="button"
-                className="h-11 w-11 border border-line"
+                variant="icon"
                 aria-label="Quitar huésped"
                 onClick={() => setGuestCount((value) => Math.max(1, value - 1))}
               >
                 −
-              </button>
+              </Button>
               <output className="min-w-24 text-center font-mono" aria-live="polite">
                 {guests} {guests === 1 ? 'persona' : 'personas'}
               </output>
-              <button
+              <Button
                 type="button"
-                className="h-11 w-11 border border-line"
+                variant="icon"
                 aria-label="Añadir huésped"
                 onClick={() =>
                   setGuestCount((value) => Math.min(selected?.maxPersonas ?? value + 1, value + 1))
                 }
               >
                 +
-              </button>
+              </Button>
             </div>
           </fieldset>
 
@@ -312,14 +309,17 @@ export function BookingPage() {
               <p className="mt-3 text-sm leading-relaxed text-muted">{status}</p>
             </div>
           )}
-          <button
+          <Button
             type="submit"
             form="reserva"
-            disabled={!available || form.formState.isSubmitting}
-            className="mt-6 inline-flex h-12 w-full items-center justify-center bg-accent text-sm text-accent-fg disabled:opacity-40"
+            variant="primary"
+            arrow
+            className="btn-block mt-6"
+            disabled={!available}
+            loading={form.formState.isSubmitting}
           >
-            {form.formState.isSubmitting ? 'Guardando…' : 'Confirmar reserva'}
-          </button>
+            Confirmar reserva
+          </Button>
         </aside>
       </div>
     </>

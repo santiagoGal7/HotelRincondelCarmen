@@ -2,6 +2,7 @@ import gsap from 'gsap'
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Photo } from '@/components/photo'
+import { Button } from '@/components/ui/button'
 import { typeLabel } from '@/data/content'
 import { formatCop } from '@/lib/format'
 import type { Room } from '@/lib/api/types'
@@ -55,12 +56,9 @@ export function RoomStory({ rooms }: { rooms: Room[] }) {
               <p className="mt-6 font-mono text-sm">
                 {formatCop(room.precioNoche)} <span className="text-[#c3b8a8]">/ noche</span>
               </p>
-              <Link
-                to={`/habitaciones/${room.slug}`}
-                className="mt-8 inline-flex h-11 w-fit items-center border border-white/30 px-4 text-sm hover:bg-white hover:text-[#0c0b0a]"
-              >
-                Ver la habitación
-              </Link>
+              <Button asChild variant="secondary" inverse arrow className="mt-8 w-fit">
+                <Link to={`/habitaciones/${room.slug}`}>Ver la habitación</Link>
+              </Button>
             </div>
           </article>
         ))}
