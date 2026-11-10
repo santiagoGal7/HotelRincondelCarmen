@@ -1,24 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hotel El Rincón del Carmen, en Carmen de Apicalá, Tolima. Tres habitaciones, desayuno, piscina y spa con cita."
+    />
+    <meta name="theme-color" content="#f3f2ef" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>Hotel El Rincón del Carmen</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-
-<body class="bg-gray-100 font-sans">
-    <nav-menu></nav-menu>
-    <main>
-        <div class="container mx-auto py-8" id="mainContent"></div>
-    </main>
-    <footer class="bg-gray-800 text-white text-center py-4">
-        <p>&copy; 2025 Hotel El Rincón del Carmen.</p>
-    </footer>
-    <script type="module" src="app.js"></script>
-</body>
-
+    <script>
+      try {
+        var stored = localStorage.getItem('rdc.theme')
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark')
+        }
+      } catch (error) {
+        /* el tema sigue en claro si el almacenamiento no está disponible */
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

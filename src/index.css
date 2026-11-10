@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-elev: var(--elev);
+  --font-sans: 'Manrope', sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+:root {
+  --bg: #f3f2ef;
+  --elev: #e6e4de;
+  --fg: #161616;
+  --muted: #4e4d48;
+  --line: rgb(22 22 22 / 0.14);
+  --accent: #8d1c1c;
+  --accent-fg: #fff7f5;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #101010;
+  --elev: #1c1c1c;
+  --fg: #f3f2ef;
+  --muted: #c2c0b8;
+  --line: rgb(243 242 239 / 0.16);
+  --accent: #e4534a;
+  --accent-fg: #1a0908;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+.marquee-track {
+  animation: marquee 36s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.rdp-root {
+  --rdp-accent-color: var(--fg);
+  --rdp-accent-background-color: var(--elev);
+  --rdp-day-height: 40px;
+  --rdp-day-width: 40px;
+  --rdp-day_button-height: 38px;
+  --rdp-day_button-width: 38px;
+  --rdp-today-color: var(--accent);
+  --rdp-range_start-color: var(--bg);
+  --rdp-range_end-color: var(--bg);
+  --rdp-weekday-opacity: 0.7;
+  color: var(--fg);
+  font-size: 0.875rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
