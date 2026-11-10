@@ -1,121 +1,136 @@
-# Hotel El Rincón del Carmen 🏨
+# Hotel El Rincón del Carmen
 
-## Descripción General 📝
+Sitio del hotel en Carmen de Apicalá, Tolima: tres habitaciones, reserva con fechas y tarifa, cuenta de huésped, quejas y reclamos, contacto y un panel de recepción. Es un proyecto de práctica. No cobra y no habla con un backend de producción.
 
-Hotel El Rincón del Carmen es una aplicación web para la gestión de reservas de un hotel. Permite a los usuarios explorar servicios del hotel, realizar y gestionar reservas, registrarse e iniciar sesión como usuario o administrador, y disfrutar de un diseño responsivo y atractivo. La aplicación utiliza HTML, JavaScript, Tailwind CSS y `localStorage` para manejar datos en formato JSON.
+La versión anterior era una SPA de web components que guardaba todo en `localStorage`. Esta conserva el dominio —estándar, deluxe y suite; spa, gastronomía y piscina; reservas, usuarios, tickets y administración— y lo presenta como un sitio de hospitalidad.
 
-## Características ✨
+## Capturas
 
-- **Módulo Inicio**: Incluye un carrusel de imágenes y secciones de **Gastronomía**, **Spa** y **Zonas Húmedas** con descripciones e imágenes (pendientes de cargar).
-- **Módulo Reservas**: Permite acceder a reservas sin necesidad de iniciar sesión, con validación de solapamiento de fechas. Muestra el estado del usuario ("Invitado", "Bienvenido, \[nombre\]" o "Administrador").
-- **Módulo Registro e Inicio de Sesión**: Formulario completo con campos de identificación, nombre, nacionalidad, email, teléfono y contraseña. Soporta registro y login de usuarios y administradores (credenciales admin: `admin`/`admin123`). **Nota**: El botón "Iniciar Sesión" no funciona actualmente debido a un problema en la asignación de eventos en `nav-menu.js`.
-- **Módulo Contacto**: Sección para información de contacto.
-- **Gestión de Administrador**: Permite gestionar habitaciones y reservas (visible solo para admin).
-- **Diseño**: Responsivo y atractivo, implementado con Tailwind CSS.
-- **Persistencia de Datos**: Usa `localStorage` para almacenar usuarios, reservas y datos de admin en formato JSON.
-- **Validaciones**: Incluye validación de email, teléfono y solapamiento de reservas.
+Inicio, 1440 px.
 
-## Estado del Proyecto 🚧
+![Inicio en escritorio](docs/screenshots/inicio-1440.jpg)
 
-La mayor parte del proyecto está funcional, incluyendo los módulos de **Inicio**, **Reservas** y **Contacto**. Sin embargo, el botón **Iniciar Sesión** no carga el formulario debido a un problema en el evento `click` del módulo `auth` en `nav-menu.js`. Se implementaron logs de depuración para rastrear el error, y se intentó usar `document.createElement('reg-usuario')` sin éxito antes de la entrega. El formulario de `<reg-usuario>` está completamente implementado y listo para funcionar una vez solucionado el evento.
+Inicio, 360 px.
 
-## Estructura del Proyecto 📂
+![Inicio en móvil](docs/screenshots/inicio-360.jpg)
+
+Ficha de habitación, 1440 px y 360 px.
+
+![Habitación en escritorio](docs/screenshots/habitacion-1440.jpg)
+
+![Habitación en móvil](docs/screenshots/habitacion-360.jpg)
+
+Reserva, con el rango marcado y el total calculado.
+
+![Reserva en escritorio](docs/screenshots/reserva-1440.jpg)
+
+![Reserva en móvil](docs/screenshots/reserva-360.jpg)
+
+Recepción.
+
+![Recepción en escritorio](docs/screenshots/admin-1440.jpg)
+
+![Recepción en móvil](docs/screenshots/admin-360.jpg)
+
+El resto de las vistas, en 1440 px y 360 px, está en `docs/screenshots/`: habitaciones, entrar, registro, cuenta, soporte y contacto. El recorrido del héroe y el cambio de página está en [docs/recorrido.mp4](docs/recorrido.mp4).
+
+## Stack
+
+React 19, TypeScript y Vite. El resultado es un sitio estático: `npm run build` deja `dist/` listo para Netlify o Vercel, sin servidor Node en producción. Next.js aportaría enrutado de servidor que esta demo no necesita; el dato vive en el navegador o, si se quiere, en un json-server local.
+
+- Tailwind CSS 4 para el sistema visual. Tipografía Fraunces y Manrope, autoalojada, con una escala fluida en `clamp()`.
+- Primitivas de Radix (diálogo, acordeón, slot) compuestas aquí, al modo de shadcn, con los tokens del hotel y sin el tema índigo de fábrica.
+- Motion para el héroe, las máscaras y las transiciones de ruta. GSAP ScrollTrigger para la sección fijada de habitaciones. Lenis para el desplazamiento. Embla para los carruseles. No hay escena WebGL: el peso se queda en el video y en el scroll.
+- React Hook Form y Zod en reserva, cuenta, contacto y tickets.
+- Vitest y Testing Library para la tarifa, el solape de fechas y el resumen de precio.
+
+La capa de datos está en `src/lib/api`. `HotelRepository` es la interfaz. Hoy hay dos implementaciones:
+
+- `local`, la predeterminada. Semilla en `src/lib/api/seed.ts`, persistencia en `localStorage` (`rdc.v1`). Funciona al abrir el build estático.
+- `http`. json-server sobre `db.json`. Misma interfaz, para ensayar el cambio a un backend real (por ejemplo Supabase) sin tocar las pantallas.
+
+## Qué quedó del proyecto anterior
+
+| Antes | Ahora |
+| --- | --- |
+| Inicio con carrusel, gastronomía, spa y piscina | Inicio con video, índice de habitaciones, servicios, amenidades, reseñas de ejemplo, mapa y preguntas |
+| Listado y ficha de habitación | `/habitaciones` y `/habitaciones/:slug`, con galería |
+| Reserva con solape de fechas y total por noches | `/reservar/:slug`, calendario de rango, huéspedes y resumen |
+| Registro e inicio de sesión, también de recepción | `/entrar` |
+| Reservas del huésped | `/cuenta` |
+| Quejas y reclamos atados a una reserva | `/soporte` |
+| Contacto | `/contacto`, con mensaje guardado en la demo |
+| Administración de habitaciones, reservas y tickets | `/admin` |
+
+La ficha original se conserva en las tres habitaciones: Estándar Patio (1 cama, 2 personas, $100.000), Deluxe Jacuzzi (2 camas, 4 personas, $150.000, internet, minibar y jacuzzi) y Suite Valle (3 camas, 6 personas, $200.000). La suite decía «vista al mar»; el hotel está en el valle, así que el servicio publicado es «vista al jardín».
+
+La salida no ocupa la noche siguiente. Si una reserva termina el día 5, otra puede empezar ese mismo día. Las canceladas no bloquean. El total lo calcula el almacén (`noches × tarifa`), no el formulario.
+
+Se puede reservar como invitado. Si después te registras con el mismo correo, la reserva aparece en la cuenta. Un ticket solo se crea sobre una reserva tuya y solo se borra mientras está en Pendiente.
+
+## Cómo ejecutarlo
+
+Hace falta Node 22.
+
+```bash
+npm install
+npm run dev
+```
+
+Abre http://127.0.0.1:5173.
+
+Recepción de demostración: usuario `admin`, contraseña `admin123`.
+
+Otros comandos:
+
+```bash
+npm test
+npm run lint
+npm run build
+npm run preview
+```
+
+### API local opcional
+
+```bash
+npm run dev:api
+```
+
+Eso levanta json-server en el puerto 3001 y Vite. En `.env`:
+
+```bash
+VITE_DATA_SOURCE=http
+VITE_API_URL=http://127.0.0.1:3001
+```
+
+Hay un ejemplo en `.env.example`. Sin ese archivo, la app no llama a ningún servidor.
+
+En recepción, «Restablecer demostración» vuelve a las tres habitaciones y borra reservas, usuarios, tickets y mensajes del almacén activo.
+
+Las contraseñas se guardan en claro. Sirve para inspeccionar el flujo en un proyecto de práctica. No sirve para un hotel real.
+
+## Despliegue
+
+El build es estático. `netlify.toml` publica `dist` y reescribe las rutas a `index.html`. En Netlify: repositorio, comando `npm run build`, directorio `dist`. El archivo ya fija Node 22.
+
+En Vercel el proyecto se detecta como Vite. `vercel.json` repite la reescritura de la SPA. No hace falta configuración extra si el directorio de salida es `dist`.
+
+La demo anterior estaba en Netlify. Esta versión se despliega igual, como sitio estático.
+
+## Estructura
 
 ```
-HotelRincondelCarmen/
-├── app/
-│   ├── components/
-│   │   ├── nav-menu.js        # Barra de navegación
-│   │   ├── reg-usuario.js     # Formulario de registro e inicio de sesión
-│   │   ├── hotel-component.js # Gestión de reservas y habitaciones
-│   │   ├── carousel.js        # Carrusel del módulo Inicio
-│   │   ├── contacto.js        # Sección de contacto
-│   │   ├── reg-habitacion.js  # Registro de habitaciones (admin)
-│   │   ├── lst-habitaciones.js # Listado de habitaciones
-│   │   ├── reg-reserva.js     # Formulario de reservas
-│   │   └── lst-reservas.js    # Listado de reservas
-│   ├── apis/
-│   │   ├── usuarioApi.js      # API para usuarios
-│   │   ├── adminApi.js        # API para administradores
-│   │   ├── habitacionApi.js   # API para habitaciones
-│   │   └── reservaApi.js      # API para reservas
-├── js/
-│   ├── utils.js               # Funciones utilitarias (e.g., initLocalStorage)
-├── images/
-│   ├── servicios/
-│   │   ├── gastronomia/       # Imágenes de gastronomía (pendientes)
-│   │   ├── spa/               # Imágenes de spa (pendientes)
-│   │   └── piscina/           # Imágenes de zonas húmedas (pendientes)
-├── index.html                 # Página principal
-├── app.js                     # Inicialización de la aplicación
-└── README.md                  # Documentación
+src/
+  components/     layout, foto, resumen de precio, primitivas
+  features/       inicio, habitaciones, reserva, cuenta, soporte, contacto, recepción
+  lib/api/        interfaz, semilla, almacén local y cliente http
+  lib/booking.ts  noches, tarifa, solape y ocupación
+  data/content.ts textos de servicios, preguntas y amenidades
+public/media/     AVIF, WebP y el video del héroe
 ```
 
-## Requisitos 📋
+Las fuentes de las fotos están en [CREDITS.md](CREDITS.md).
 
-- Navegador moderno (Chrome, Firefox, Edge).
-- Live Server para desarrollo local (recomendado).
-- Conexión a internet para cargar Tailwind CSS desde CDN (`https://cdn.tailwindcss.com`).
+## Autor
 
-## Instalación y Ejecución 🚀
-
-1. Clona el repositorio:
-
-   ```bash
-   git clone <URL_REPOSITORIO>
-   cd HotelRincondelCarmen
-   ```
-
-2. Abre el proyecto en VS Code.
-
-3. Instala la extensión **Live Server** (si no la tienes).
-
-4. Haz clic derecho en `index.html` y selecciona **Open with Live Server**.
-
-5. Accede a la aplicación en `http://127.0.0.1:5500`.
-
-## Uso 🖱️
-
-- **Inicio**: Explora el carrusel y las secciones de Gastronomía, Spa y Zonas Húmedas.
-- **Reservas**: Crea y visualiza reservas. Sin login, se muestra como "Invitado". Los administradores ven opciones adicionales para gestionar habitaciones.
-- **Contacto**: Visualiza la información de contacto.
-- **Iniciar Sesión**:
-  - Para registrar un usuario, haz clic en "Nuevo", completa los campos y haz clic en "Guardar".
-  - Para login de usuario: Usa el ID registrado y la contraseña (e.g., ID: `123`, contraseña: `test123`).
-  - Para login de admin: Usa `admin`/`admin123`.
-  - **Nota**: El botón "Iniciar Sesión" no funciona actualmente, pero el formulario está implementado en `reg-usuario.js`.
-- **Cerrar Sesión**: Disponible tras login, cambia la navbar a "Cerrar Sesión (Usuario)" o "Cerrar Sesión (Admin)".
-
-## Problemas Conocidos ⚠️
-
-- **Botón "Iniciar Sesión"**: No carga el formulario debido a un error en el evento `click` del módulo `auth` en `nav-menu.js`. Los logs de depuración muestran que otros módulos funcionan, pero no `auth`.
-- **Imágenes**: Las imágenes de Gastronomía, Spa y Zonas Húmedas están referenciadas en `images/servicios/`, pero no cargadas, causando errores 404 en la consola.
-- **Tailwind Warning**: La consola muestra una advertencia sobre el uso de `cdn.tailwindcss.com` en producción, pero es ignorable para este proyecto académico.
-
-## Depuración 🛠️
-
-Para rastrear el problema del botón "Iniciar Sesión":
-
-1. Abre DevTools (F12) &gt; Console.
-2. Haz clic en "Iniciar Sesión".
-3. Busca logs como:
-   - `NavMenu: Click en módulo auth`
-   - `NavMenu: Intentando cargar reg-usuario`
-   - `RegUsuario: Constructor ejecutado`
-4. Si no aparecen, el problema está en el selector `.nav-link` o la importación de `reg-usuario.js`.
-
-## Autores ✒️
-
-- **Santiago Gallo** - Desarrollo principal, implementación de módulos y diseño.
-- **j3** - Colaborador en el desarrollo.
-
-## Futuras Mejoras 🔮
-
-- Corregir el evento `click` del botón "Iniciar Sesión" en `nav-menu.js`.
-- Añadir imágenes optimizadas en `images/servicios/`.
-- Implementar un menú móvil para mejorar la responsividad.
-- Agregar más validaciones en el frontend para reservas.
-
-## Enlace al Proyecto 🌐
-
-Hotel El Rincón del Carmen [(enlace )](dashing-lamington-b8a2d6.netlify.app/)
+Santiago Gallo.
