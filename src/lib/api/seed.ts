@@ -15,7 +15,7 @@ export const seedStore: Store = {
       precioNoche: 100000,
       superficie: 18,
       servicios: ['internet', 'aire acondicionado'],
-      imagenes: ['room-standard-1', 'room-standard-2', 'bath'],
+      imagenes: ['room-standard-1', 'room-standard-2', 'bed-white', 'bath'],
     },
     {
       id: '1',
@@ -30,7 +30,7 @@ export const seedStore: Store = {
       precioNoche: 150000,
       superficie: 32,
       servicios: ['internet', 'minibar', 'jacuzzi', 'aire acondicionado', 'caja fuerte'],
-      imagenes: ['room-deluxe-1', 'room-deluxe-2', 'bath'],
+      imagenes: ['room-deluxe-1', 'room-deluxe-2', 'linen', 'bath-stone'],
     },
     {
       id: '3',
@@ -45,7 +45,7 @@ export const seedStore: Store = {
       precioNoche: 200000,
       superficie: 48,
       servicios: ['internet', 'minibar', 'vista al jardín', 'aire acondicionado', 'sala'],
-      imagenes: ['room-suite-1', 'room-suite-2', 'night'],
+      imagenes: ['room-suite-1', 'room-suite-2', 'suite-night', 'bedroom-warm'],
     },
   ],
   users: [],

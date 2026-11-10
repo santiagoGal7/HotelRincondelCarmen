@@ -53,7 +53,7 @@ export function SiteHeader() {
       >
         Saltar al contenido
       </a>
-      <div className="mx-auto flex h-16 w-full max-w-[1240px] items-center justify-between gap-4 px-5 sm:h-[4.5rem] sm:px-8">
+      <div className="shell flex h-16 items-center justify-between gap-4 sm:h-[4.5rem]">
         <Link to="/" className="flex items-center gap-3" aria-label="El Rincón del Carmen, inicio">
           <span className={cn('grid h-8 w-8 place-items-center', overHero ? 'bg-white' : 'bg-fg')}>
             <span className="h-2 w-2 bg-accent" />

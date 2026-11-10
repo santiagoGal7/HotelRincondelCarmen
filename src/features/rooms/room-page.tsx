@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { Lightbox } from '@/components/cinematic/lightbox'
 import { Photo } from '@/components/photo'
-import { Modal } from '@/components/ui/modal'
 import { usePageTitle } from '@/components/page-intro'
 import { typeLabel } from '@/data/content'
 import { formatCop } from '@/lib/format'
@@ -17,7 +17,7 @@ export function RoomPage() {
 
   if (!room) {
     return (
-      <div className="mx-auto w-full max-w-[1240px] px-5 pt-36 pb-20 sm:px-8">
+      <div className="shell pt-36 pb-20">
         <h1 className="font-display text-5xl tracking-tight">Esa habitación no está.</h1>
         <Link to="/habitaciones" className="mt-6 inline-flex underline underline-offset-4">
           Volver al listado
@@ -30,41 +30,46 @@ export function RoomPage() {
 
   return (
     <article className="pt-24">
-      <div className="mx-auto grid w-full max-w-[1240px] gap-8 px-5 pb-16 sm:px-8 lg:grid-cols-12">
-        <div className="lg:col-span-8">
+      <div className="shell grid gap-10 pb-20 lg:grid-cols-12 lg:gap-12">
+        <div className="lg:col-span-7">
           <button
             type="button"
-            className="block w-full"
+            className="group block w-full overflow-hidden"
             onClick={() => setOpen(true)}
-            aria-label="Ampliar fotografía"
+            aria-label="Abrir la galería"
           >
             <Photo
               name={image}
               alt={room.nombre}
               priority
-              className="aspect-[4/3] w-full object-cover"
+              className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
             />
           </button>
-          <div className="mt-3 grid grid-cols-3 gap-3">
+          <div className="mt-3 grid grid-cols-4 gap-3">
             {room.imagenes.map((name, index) => (
               <button
                 key={name}
                 type="button"
                 aria-label={`Ver foto ${index + 1}`}
                 aria-pressed={index === active}
-                onClick={() => setActive(index)}
-                className={index === active ? 'opacity-100' : 'opacity-60 hover:opacity-100'}
+                onClick={() => {
+                  setActive(index)
+                  setOpen(true)
+                }}
+                className={index === active ? 'opacity-100' : 'opacity-55 hover:opacity-100'}
               >
                 <Photo name={name} alt="" className="aspect-[4/3] w-full object-cover" />
               </button>
             ))}
           </div>
         </div>
-        <div className="lg:col-span-4 lg:pt-2">
+        <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
           <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">
             {typeLabel[room.tipo]}
           </p>
-          <h1 className="mt-2 font-display text-5xl tracking-tight">{room.nombre}</h1>
+          <h1 className="mt-2 font-display text-5xl leading-none font-medium tracking-tight sm:text-6xl">
+            {room.nombre}
+          </h1>
           <p className="mt-4 text-sm leading-relaxed text-muted">{room.descripcion}</p>
           <dl className="mt-6 grid grid-cols-3 border-y border-line py-4 text-sm">
             <div>
@@ -96,32 +101,14 @@ export function RoomPage() {
           </Link>
         </div>
       </div>
-      <Modal
+      <Lightbox
+        images={room.imagenes}
+        alts={room.imagenes.map(() => room.nombre)}
+        index={active}
         open={open}
         onOpenChange={setOpen}
-        title={room.nombre}
-        description="Galería de la habitación"
-      >
-        <Photo name={image} alt={room.nombre} className="w-full object-cover" />
-        <div className="mt-4 flex justify-between gap-3">
-          <button
-            type="button"
-            className="text-sm underline underline-offset-4"
-            onClick={() =>
-              setActive((value) => (value - 1 + room.imagenes.length) % room.imagenes.length)
-            }
-          >
-            Anterior
-          </button>
-          <button
-            type="button"
-            className="text-sm underline underline-offset-4"
-            onClick={() => setActive((value) => (value + 1) % room.imagenes.length)}
-          >
-            Siguiente
-          </button>
-        </div>
-      </Modal>
+        onIndex={setActive}
+      />
     </article>
   )
 }

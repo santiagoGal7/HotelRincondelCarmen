@@ -6,14 +6,25 @@ export function SmoothScroll() {
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduce) return
-    const lenis = new Lenis({
-      autoRaf: true,
-      anchors: true,
-      duration: 1.05,
-      respectReducedMotion: true,
-      prevent: (node) => Boolean(node.closest('[data-lenis-prevent]')),
+    let detach = () => {}
+    let lenis: Lenis | null = null
+    let alive = true
+    void import('@/lib/scroll').then(({ attachLenis }) => {
+      if (!alive) return
+      lenis = new Lenis({
+        autoRaf: false,
+        anchors: true,
+        duration: 1.05,
+        respectReducedMotion: true,
+        prevent: (node) => Boolean(node.closest('[data-lenis-prevent]')),
+      })
+      detach = attachLenis(lenis)
     })
-    return () => lenis.destroy()
+    return () => {
+      alive = false
+      detach()
+      lenis?.destroy()
+    }
   }, [])
   return null
 }

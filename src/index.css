@@ -8,30 +8,30 @@
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-elev: var(--elev);
-  --font-sans: 'Manrope', sans-serif;
-  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+  --font-display: 'Bodoni Moda', 'Times New Roman', serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
 :root {
-  --bg: #f3f2ef;
-  --elev: #e6e4de;
-  --fg: #161616;
-  --muted: #4e4d48;
-  --line: rgb(22 22 22 / 0.14);
-  --accent: #8d1c1c;
-  --accent-fg: #fff7f5;
+  --bg: #f4efe6;
+  --elev: #e8e0d2;
+  --fg: #1b1612;
+  --muted: #5e564c;
+  --line: rgb(27 22 18 / 0.14);
+  --accent: #7c2f2a;
+  --accent-fg: #fbf6ef;
   color-scheme: light;
 }
 
 .dark {
-  --bg: #101010;
-  --elev: #1c1c1c;
-  --fg: #f3f2ef;
-  --muted: #c2c0b8;
-  --line: rgb(243 242 239 / 0.16);
-  --accent: #e4534a;
-  --accent-fg: #1a0908;
+  --bg: #0c0b0a;
+  --elev: #171513;
+  --fg: #f4efe6;
+  --muted: #c3b8a8;
+  --line: rgb(244 239 230 / 0.16);
+  --accent: #d7b07a;
+  --accent-fg: #1a1208;
   color-scheme: dark;
 }
 
@@ -42,15 +42,35 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
 }
 
+.shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1280px;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
+}
+
 ::selection {
-  background: var(--fg);
-  color: var(--bg);
+  background: var(--accent);
+  color: var(--accent-fg);
 }
 
 :focus-visible {
@@ -63,7 +83,7 @@ section[id] {
 }
 
 .marquee-track {
-  animation: marquee 36s linear infinite;
+  animation: marquee 38s linear infinite;
 }
 
 @keyframes marquee {
@@ -85,7 +105,6 @@ section[id] {
   --rdp-today-color: var(--accent);
   --rdp-range_start-color: var(--bg);
   --rdp-range_end-color: var(--bg);
-  --rdp-weekday-opacity: 0.7;
   color: var(--fg);
   font-size: 0.875rem;
 }
@@ -93,9 +112,5 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;
-  }
-
-  html {
-    scroll-behavior: auto;
   }
 }

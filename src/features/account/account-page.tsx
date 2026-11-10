@@ -21,7 +21,7 @@ export function AccountPage() {
         title="Tus reservas."
         lede={`${user.nacionalidad} · ${user.email} · ${user.telefono}`}
       />
-      <div className="mx-auto w-full max-w-[1240px] px-5 pb-20 sm:px-8">
+      <div className="shell pb-24">
         <div className="mb-8 flex flex-wrap gap-3">
           <Link
             to="/reservar"

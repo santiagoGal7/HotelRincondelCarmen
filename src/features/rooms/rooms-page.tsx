@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Carousel, Slide } from '@/components/cinematic/carousel'
 import { Photo } from '@/components/photo'
 import { PageIntro, usePageTitle } from '@/components/page-intro'
 import { typeLabel } from '@/data/content'
@@ -31,7 +32,28 @@ export function RoomsPage() {
         title="Tres piezas, tres tarifas."
         lede="El inventario parte de la ficha original: estándar para dos, deluxe con jacuzzi para cuatro y suite para seis. Cada una tiene su propia galería."
       />
-      <div className="mx-auto flex w-full max-w-[1240px] gap-2 px-5 sm:px-8">
+      <div className="shell pb-8">
+        <Carousel label="Recorrer">
+          {rooms.map((room) => (
+            <Slide key={room.id}>
+              <Link to={`/habitaciones/${room.slug}`} className="group block">
+                <div className="overflow-hidden">
+                  <Photo
+                    name={room.imagenes[0]}
+                    alt={room.nombre}
+                    className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-muted uppercase">
+                  {typeLabel[room.tipo]}
+                </p>
+                <p className="font-display text-3xl">{room.nombre}</p>
+              </Link>
+            </Slide>
+          ))}
+        </Carousel>
+      </div>
+      <div className="shell flex flex-wrap gap-2">
         {filters.map((item) => (
           <button
             key={item.id}
@@ -47,7 +69,7 @@ export function RoomsPage() {
           </button>
         ))}
       </div>
-      <div className="mx-auto w-full max-w-[1240px] px-5 py-10 sm:px-8">
+      <div className="shell py-12 md:py-16">
         {visible.length === 0 ? (
           <p className="border-t border-line py-10 text-muted">No hay habitaciones en este tipo.</p>
         ) : (

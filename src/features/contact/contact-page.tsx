@@ -20,7 +20,7 @@ export function ContactPage() {
         title="Escribe a la casa."
         lede="Teléfono, correo y dirección del proyecto original. El mensaje se guarda en la demostración; no sale por correo."
       />
-      <div className="mx-auto grid w-full max-w-[1240px] gap-12 px-5 pb-16 sm:px-8 lg:grid-cols-2">
+      <div className="shell grid gap-12 pb-16 lg:grid-cols-2 lg:gap-16">
         <div className="grid gap-6 text-sm">
           <div>
             <p className="text-muted">Dirección</p>

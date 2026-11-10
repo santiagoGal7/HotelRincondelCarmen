@@ -126,7 +126,7 @@ export function AdminPage() {
         </div>
       </aside>
 
-      <div className="px-5 py-8 sm:px-8">
+      <div className="px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">
@@ -169,6 +169,22 @@ export function AdminPage() {
               publicadas. {hotel.users.length} huéspedes registrados. Los datos viven en{' '}
               {hotel.source === 'http' ? 'json-server' : 'este navegador'}.
             </p>
+            <ul className="mt-8 max-w-3xl border-t border-line">
+              {hotel.rooms.map((room) => (
+                <li
+                  key={room.id}
+                  className="flex items-baseline justify-between gap-4 border-b border-line py-4"
+                >
+                  <span>
+                    <span className="block font-mono text-[11px] tracking-[0.14em] text-muted uppercase">
+                      {room.tipo}
+                    </span>
+                    <span className="font-display text-3xl">{room.nombre}</span>
+                  </span>
+                  <span className="font-mono text-sm">{formatCop(room.precioNoche)}</span>
+                </li>
+              ))}
+            </ul>
             <button
               type="button"
               className="mt-6 h-11 border border-line px-4 text-sm"

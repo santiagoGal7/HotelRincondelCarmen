@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export function SiteFooter() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto grid w-full max-w-[1240px] gap-10 px-5 py-14 sm:px-8 md:grid-cols-12">
+      <div className="shell grid gap-10 py-16 md:grid-cols-12 md:py-20">
         <div className="md:col-span-6">
           <p className="font-display text-4xl tracking-tight sm:text-6xl">El Rincón del Carmen</p>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
@@ -26,7 +26,7 @@ export function SiteFooter() {
           <Link to="/admin">Recepción</Link>
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-[1240px] flex-col gap-2 border-t border-line px-5 py-5 text-xs text-muted sm:flex-row sm:justify-between sm:px-8">
+      <div className="shell flex flex-col gap-2 border-t border-line py-5 pb-24 text-xs text-muted sm:flex-row sm:justify-between">
         <p>© {new Date().getFullYear()} Hotel El Rincón del Carmen</p>
         <p>Fotografía de archivo · Unsplash. Datos de demostración en este navegador.</p>
       </div>

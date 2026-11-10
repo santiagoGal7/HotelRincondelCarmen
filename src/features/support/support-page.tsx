@@ -29,7 +29,7 @@ export function SupportPage() {
         title="Quejas y reclamos."
         lede="El ticket queda atado a una reserva tuya. Recepción responde desde el panel y solo puedes borrar el mensaje mientras está pendiente."
       />
-      <div className="mx-auto grid w-full max-w-[1240px] gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-2">
+      <div className="shell grid gap-12 pb-24 lg:grid-cols-2 lg:gap-16">
         {mine.length === 0 ? (
           <p className="text-muted">Primero necesitas una reserva a tu nombre.</p>
         ) : (

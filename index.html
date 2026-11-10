@@ -13,12 +13,9 @@
     <script>
       try {
         var stored = localStorage.getItem('rdc.theme')
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        if (stored === 'dark' || (!stored && prefersDark)) {
-          document.documentElement.classList.add('dark')
-        }
+        if (stored !== 'light') document.documentElement.classList.add('dark')
       } catch (error) {
-        /* el tema sigue en claro si el almacenamiento no está disponible */
+        document.documentElement.classList.add('dark')
       }
     </script>
   </head>

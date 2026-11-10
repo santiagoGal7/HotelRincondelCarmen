@@ -32,13 +32,15 @@ Recepción.
 
 ![Recepción en móvil](docs/screenshots/admin-360.jpg)
 
+El resto de las vistas, en 1440 px y 360 px, está en `docs/screenshots/`: habitaciones, entrar, registro, cuenta, soporte y contacto. El recorrido del héroe y el cambio de página está en [docs/recorrido.mp4](docs/recorrido.mp4).
+
 ## Stack
 
 React 19, TypeScript y Vite. El resultado es un sitio estático: `npm run build` deja `dist/` listo para Netlify o Vercel, sin servidor Node en producción. Next.js aportaría enrutado de servidor que esta demo no necesita; el dato vive en el navegador o, si se quiere, en un json-server local.
 
 - Tailwind CSS 4 para el sistema visual.
 - Primitivas de Radix (diálogo, acordeón, slot) compuestas aquí, al modo de shadcn, con los tokens del hotel y sin el tema índigo de fábrica.
-- Motion para el héroe y las entradas al hacer scroll. Lenis para el desplazamiento suave. No hay GSAP ni React Three Fiber: una escena WebGL no aporta a la reserva y sí al peso de la primera carga.
+- Motion para el héroe, las máscaras y las transiciones de ruta. GSAP ScrollTrigger para la sección fijada de habitaciones. Lenis para el desplazamiento. Embla para los carruseles. No hay escena WebGL: el peso se queda en el video y en el scroll.
 - React Hook Form y Zod en reserva, cuenta, contacto y tickets.
 - Vitest y Testing Library para la tarifa, el solape de fechas y el resumen de precio.
 

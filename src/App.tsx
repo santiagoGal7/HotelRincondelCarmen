@@ -42,7 +42,7 @@ function RequireAdmin({ children }: { children: ReactNode }) {
 
 function NotFound() {
   return (
-    <div className="mx-auto w-full max-w-[1240px] px-5 pt-36 pb-20 sm:px-8">
+    <div className="shell pt-36 pb-24">
       <h1 className="font-display text-5xl tracking-tight">Esa página no existe.</h1>
       <a href="/" className="mt-6 inline-flex underline underline-offset-4">
         Volver al inicio

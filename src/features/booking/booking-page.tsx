@@ -116,7 +116,7 @@ export function BookingPage() {
 
   if (done && selected) {
     return (
-      <div className="mx-auto w-full max-w-[760px] px-5 pt-32 pb-20 sm:px-8">
+      <div className="shell max-w-3xl pt-32 pb-24">
         <p className="font-mono text-[11px] tracking-[0.18em] text-muted uppercase">
           Reserva confirmada
         </p>
@@ -161,7 +161,7 @@ export function BookingPage() {
         title="Fechas, personas y un total claro."
         lede="La salida no se cobra: esa mañana la habitación queda libre. Puedes reservar como invitado o con tu cuenta."
       />
-      <div className="mx-auto grid w-full max-w-[1240px] gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-12">
+      <div className="shell grid gap-12 pb-24 lg:grid-cols-12 lg:gap-16">
         <form
           id="reserva"
           className="grid gap-10 lg:col-span-7"
