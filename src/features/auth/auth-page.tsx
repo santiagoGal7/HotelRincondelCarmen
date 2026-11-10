@@ -8,7 +8,6 @@ import { controlClass, Field } from '@/components/ui/field'
 import { Photo } from '@/components/photo'
 import { useHotel } from '@/lib/hotel-context'
 import { adminLoginSchema, loginSchema, registerSchema, type RegisterValues } from '@/lib/schemas'
-import { cn } from '@/lib/cn'
 import type { z } from 'zod'
 
 type Mode = 'entrar' | 'registro' | 'recepcion'
@@ -69,10 +68,7 @@ export function AuthPage() {
                 setMode(id)
                 setError(null)
               }}
-              className={cn(
-                'h-10 border px-3 text-sm',
-                mode === id ? 'border-fg bg-fg text-bg' : 'border-line',
-              )}
+              className="chip"
             >
               {label}
             </button>

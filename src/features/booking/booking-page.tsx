@@ -93,7 +93,10 @@ export function BookingPage() {
             : 'Disponible. El total de abajo es el que se guarda.'
 
   async function onSubmit(values: GuestValues) {
-    if (!selected || !quote?.ok || !available) return
+    if (!selected || !quote?.ok || !available) {
+      setSubmitError(status)
+      return
+    }
     setSubmitError(null)
     try {
       const booking = await createBooking({
@@ -293,7 +296,7 @@ export function BookingPage() {
           ) : null}
         </form>
 
-        <aside className="h-fit border border-line p-5 lg:sticky lg:top-24 lg:col-span-5">
+        <aside className="panel h-fit lg:sticky lg:top-24 lg:col-span-5">
           {selected && quote?.ok ? (
             <PriceSummary
               roomName={selected.nombre}
@@ -315,7 +318,6 @@ export function BookingPage() {
             variant="primary"
             arrow
             className="btn-block mt-6"
-            disabled={!available}
             loading={form.formState.isSubmitting}
           >
             Confirmar reserva

@@ -104,10 +104,7 @@ export function AdminPage() {
               type="button"
               aria-current={section === item.id ? 'page' : undefined}
               onClick={() => setSection(item.id)}
-              className={cn(
-                'h-10 px-3 text-left text-sm',
-                section === item.id ? 'bg-fg text-bg' : 'hover:bg-elev',
-              )}
+              className="chip w-full text-left"
             >
               {item.label}
             </button>
@@ -127,7 +124,7 @@ export function AdminPage() {
         </div>
       </aside>
 
-      <div className="px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
+      <div className="min-w-0 px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">
@@ -152,7 +149,7 @@ export function AdminPage() {
 
         {section === 'resumen' ? (
           <div>
-            <dl className="grid border-y border-line sm:grid-cols-4">
+            <dl className="panel grid gap-2 sm:grid-cols-4">
               {[
                 [String(hotel.rooms.length), 'Habitaciones'],
                 [String(confirmed), 'Reservas activas'],
@@ -249,7 +246,7 @@ export function AdminPage() {
         ) : null}
 
         {section === 'reservas' ? (
-          <div className="overflow-x-auto">
+          <div className="panel min-w-0 overflow-x-auto">
             <table className="w-full min-w-[720px] border-t border-line text-left text-sm">
               <thead className="font-mono text-[11px] tracking-[0.14em] text-muted uppercase">
                 <tr>

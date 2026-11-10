@@ -7,7 +7,6 @@ import { PageIntro, usePageTitle } from '@/components/page-intro'
 import { typeLabel } from '@/data/content'
 import { formatCop } from '@/lib/format'
 import { useHotel } from '@/lib/hotel-context'
-import { cn } from '@/lib/cn'
 import type { RoomType } from '@/lib/api/types'
 
 const filters: Array<{ id: 'todas' | RoomType; label: string }> = [
@@ -61,10 +60,7 @@ export function RoomsPage() {
             type="button"
             aria-pressed={filter === item.id}
             onClick={() => setFilter(item.id)}
-            className={cn(
-              'h-10 border px-4 text-sm',
-              filter === item.id ? 'border-fg bg-fg text-bg' : 'border-line',
-            )}
+            className="chip"
           >
             {item.label}
           </button>

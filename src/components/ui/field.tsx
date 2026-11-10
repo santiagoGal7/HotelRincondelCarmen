@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 
 export const controlClass =
-  'w-full border border-line bg-bg px-3 py-3 text-sm text-fg outline-none placeholder:text-muted'
+  'w-full rounded-[1.15rem_1.15rem_1.15rem_0.35rem] bg-bg px-4 py-3 text-sm text-fg shadow-[inset_0_0_0_1px_var(--line),0_0_0_1px_color-mix(in_srgb,var(--fg)_14%,transparent)] outline-none transition focus-visible:shadow-[inset_0_0_0_1px_var(--accent),0_0_0_1px_var(--accent)]'
 
 export function Field({
   label,

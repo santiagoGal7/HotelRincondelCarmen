@@ -22,7 +22,7 @@ function ScrollProgress() {
 }
 
 export function MarketingLayout() {
-  const { error } = useHotel()
+  const { error, ready } = useHotel()
   const { pathname } = useLocation()
   return (
     <>
@@ -38,6 +38,11 @@ export function MarketingLayout() {
           El Rincón · Carmen de Apicalá
         </p>
       </div>
+      {!ready ? (
+        <p className="shell pt-28 text-sm text-muted" role="status">
+          Cargando la casa…
+        </p>
+      ) : null}
       {error ? (
         <p
           className="shell mt-24 text-sm text-accent"

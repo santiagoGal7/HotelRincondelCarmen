@@ -1,6 +1,7 @@
 import { lazy, Suspense, type ReactNode } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { MarketingLayout } from '@/components/layout/marketing-layout'
+import { Button } from '@/components/ui/button'
 import { SmoothScroll } from '@/components/layout/smooth-scroll'
 import { HotelProvider, useHotel } from '@/lib/hotel-context'
 import { ThemeProvider } from '@/lib/theme'
@@ -43,10 +44,14 @@ function RequireAdmin({ children }: { children: ReactNode }) {
 function NotFound() {
   return (
     <div className="shell pt-36 pb-24">
-      <h1 className="font-display text-5xl tracking-tight">Esa página no existe.</h1>
-      <a href="/" className="mt-6 inline-flex underline underline-offset-4">
-        Volver al inicio
-      </a>
+      <p className="type-kicker text-muted">404</p>
+      <h1 className="type-h1 mt-3">Esa página no existe.</h1>
+      <p className="mt-4 max-w-md text-muted">
+        La dirección no corresponde a una habitación, una reserva ni al panel.
+      </p>
+      <Button asChild variant="primary" arrow className="mt-8">
+        <a href="/">Volver al inicio</a>
+      </Button>
     </div>
   )
 }
